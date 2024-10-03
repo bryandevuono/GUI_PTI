@@ -1,0 +1,14 @@
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\C# loop through json.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\C# loop through json.AssemblyInfoInputs.cache
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\C# loop through json.AssemblyInfo.cs
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\C# loop through json.csproj.CoreCompileInputs.cache
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\bin\Debug\net7.0\C# loop through json.exe
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\bin\Debug\net7.0\C# loop through json.deps.json
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\bin\Debug\net7.0\C# loop through json.runtimeconfig.json
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\bin\Debug\net7.0\C# loop through json.dll
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\bin\Debug\net7.0\C# loop through json.pdb
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\C# loop through json.dll
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\refint\C# loop through json.dll
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\C# loop through json.pdb
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\C# loop through json.genruntimeconfig.cache
+C:\Users\robin\OneDrive - Hogeschool Rotterdam\Jaar 2\Project D\Project-D\C# loop through json\obj\Debug\net7.0\ref\C# loop through json.dll

@@ -1,0 +1,133 @@
+.addBarContainer {
+    position: fixed;
+    background-color: #9B2A87;
+    background: linear-gradient(10deg, #3c1034 0%, rgb(119, 32, 103) 20%, #9B2A87 100%);
+    display: grid;
+    width: 25vw;
+    min-width: 150px;
+    max-width: 300px;
+    height: 100vh;
+    float: left;
+    color: #fff;
+    box-shadow: 3px 0px 5px #00000044;
+}
+
+.addButton {
+    background-color: #8C2378;
+    box-shadow: 2px 2px 5px #00000022;
+    border: none;
+    color: white;
+    text-align: left;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 6px 2vw;
+    padding: 8px 15px;
+    width: 15vw;
+    min-width: 120px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.addButton:hover {
+    color: #ccc;
+}
+
+.addButton:active {
+    color: #ccc;
+    box-shadow: 2px 2px 5px #00000011;
+}
+
+
+.addBarTitle {
+    font-size: 24px;
+    text-align: left;
+    margin: 20px 20px;
+}
+
+.icon {
+    float: left;
+    padding: 5px;
+    margin-right: 15px;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #ab2893;
+}
+
+.downloadIcon {
+    float: left;
+    padding-left: 5px;
+    margin-right: 15px;
+    width: 24px;
+    height: 24px;
+}
+
+.logo {
+    margin: 25px 35px;
+    margin-bottom: 50px;
+    height: 35px;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+@keyframes downloadButtonHover {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+@keyframes downloadButtonHoverNot {
+    0% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.downloadButton {
+    box-shadow: 2px 2px 5px #00000066;
+    border: none;
+    color: #8C2378;
+    text-align: left;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 25px;
+    margin: 6px 2vw;
+    padding: 8px 15px;
+    width: 15vw;
+    min-width: 120px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    background: linear-gradient(90deg, #ffffff66 0%, #fff 40%, #fff 60%, #ffffff88 100%);
+    background-size: 200% auto;
+    transition: background-position 0.5s ease;
+}
+
+.downloadButton:hover {
+    animation: downloadButtonHover 1s forwards;
+}
+
+.downloadButton:active {
+    box-shadow: 2px 2px 5px #00000066 inset;
+}
+
+.downloadButton:not(:hover) {
+    animation: downloadButtonHoverNot 1s forwards;
+}
+
+.addBarTitle2 {
+    margin: 8px 3vw;
+    margin-top: 40px;
+    font-size: 20px;
+}

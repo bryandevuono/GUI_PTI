@@ -1,0 +1,48 @@
+/* .text {
+  background-color: aqua;
+}
+
+.numeric {
+  background-color: red;
+}
+
+.read-only {
+  background-color: blue;
+}
+
+.select {
+  background-color: yellow;
+}
+
+.radio {
+  background-color: green;
+} */
+
+.container {
+  float: right;
+  margin-right: 4vw;
+}
+
+.EmptyDroppableSpace {
+  margin-top: 5vh;
+  min-width: 110px;
+  padding: 20px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  list-style-type: none;
+  width: 64vw;
+  height: 80vh;
+}
+
+.EmptyDroppableSpace h4 {
+  text-align: center;
+  margin-top: 20vh;
+  color: #ccc;
+  font-size: 30px;
+}
+
+.arrow {
+  width: 30%;
+  margin-left: 30%;
+  rotate: 180deg;
+}

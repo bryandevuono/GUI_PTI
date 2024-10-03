@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+}
+
+.container>* {
+  margin: 5px;
+}
+
+.container-wrapper {
+  display: flex;
+}
+
+.rightcontainer {
+  flex: 1;
+  margin: 0 10px;
+}

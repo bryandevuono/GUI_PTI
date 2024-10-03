@@ -1,0 +1,488 @@
+{
+  "title": "Oude meter",
+  "controls": [
+    {
+      "type": "radio",
+      "name": "task-executable",
+      "label": "Is de taak uitvoerbaar?",
+      "defaultValue": true
+    },
+    {
+      "type": "group",
+      "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)]",
+      "controls": [
+        {
+          "type": "group",
+          "dataContext": "oldMeter",
+          "controls": [
+            {
+              "type": "header",
+              "name": "current-meter",
+              "labelFormat": "{0}",
+              "dataMember": "typeDescription",
+              "visibilityConditions": [
+                {
+                  "control": "task-executable",
+                  "value": true,
+                  "result": true
+                },
+                {
+                  "result": false
+                }
+              ]
+            },
+            {
+              "type": "radio",
+              "name": "is-task-executable",
+              "label": "Is installatie van de watermeter mogelijk?",
+              "dataMember": "isTaskExecutable",
+              "orientation": "horizontal",
+              "required": true,
+              "requiredMessage": "Geef aan of de taak uitvoerbaar is",
+              "syncVisibilityWith": "current-meter"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "name": "meter-problem",
+          "label": "Reden niet uitvoerbaar",
+          "dataMember": "meterProblem",
+          "listDataSource": "masterData.meterProblems",
+          "required": true,
+          "requiredMessage": "Geef aan waarom de taak niet uitvoerbaar is",
+          "filter": {
+            "type": "include",
+            "property": "key",
+            "values": [
+              "digitale-meter-reeds-aanwezig",
+              "meter-niet-toegankelijk",
+              "meteropstelling_niet_gevonden",
+              "lood_op_binneninstallatie",
+              "aarding_w_meter",
+              "meternummer_klopt_niet"
+            ]
+          },
+          "visibilityConditions": [
+            {
+              "control": "task-executable",
+              "value": false,
+              "result": false
+            },
+            {
+              "control": "is-task-executable",
+              "value": false,
+              "result": true
+            },
+            {
+              "result": false
+            }
+          ]
+        },
+        {
+          "type": "read-only",
+          "name": "photo-before-w",
+          "label": "Maak een overzichtsfoto voor aanvang van de werken",
+          "hasPhotoButton": true,
+          "photoConfig": {
+            "analyzeImage": true,
+            "analyzer": "deepomatic",
+            "analyzerParams": {
+              "taskGroup": "water-meter-global-before"
+            },
+            "analyzerConfig": {
+              "requiredRetriesOnFailure": 1,
+              "analyzeOfflineImages": true
+            },
+            "errorControl": "photo-before-w-0",
+            "mapping": {
+              "w_global_before": {
+                "onFail": "Foto kan niet geanalyseerd worden",
+                "treatFalsyAsError": true
+              },
+              "w_meter_before": {
+                "onFail": "De meter is niet herkend als watermeter",
+                "treatFalsyAsError": true
+              },
+              "w_main_valve_before": {
+                "onFail": "Er is geen keerklep herkend op de foto",
+                "control": "water-meter-check-valve-0"
+              }
+            },
+            "pathToTask": "tasks[?(@.oldMeter.type==3)]",
+            "minRequired": 1,
+            "labels": [
+              "W - Overzicht - Voor aanvang werken"
+            ]
+          },
+          "visibilityConditions": [
+            {
+              "control": "task-executable",
+              "value": true,
+              "result": true
+            },
+            {
+              "result": false
+            },
+            {
+              "control": "is-task-executable",
+              "value": true,
+              "result": true
+            },
+            {
+              "result": false
+            }
+          ]
+        },
+        {
+          "type": "read-only",
+          "name": "photo-before-w-2",
+          "label": "Maak een detailfoto voor aanvang van de werken",
+          "hasPhotoButton": true,
+          "photoConfig": {
+            "analyzeImage": true,
+            "analyzer": "deepomatic",
+            "analyzerParams": {
+              "taskGroup": "water-meter-closeup-before"
+            },
+            "analyzerConfig": {
+              "requiredRetriesOnFailure": 1,
+              "analyzeOfflineImages": true
+            },
+            "errorControl": "photo-before-w-2-0",
+            "mapping": {
+              "w_closeup_before": {
+                "onFail": "Foto kan niet geanalyseerd worden",
+                "treatFalsyAsError": true
+              },
+              "w_serial_number_before": {
+                "onFail": "Het meternummer kan niet afgelezen worden",
+                "treatFalsyAsError": true
+              },
+              "w_serial_number_value_before": {
+                "control": "trigger-meter-number-0"
+              },
+              "w_reading_value_before": {
+                "control": "meter-reading-0-0"
+              }
+            },
+            "pathToTask": "tasks[?(@.oldMeter.type==3)]",
+            "minRequired": 1,
+            "labels": [
+              "W - Detail - Voor aanvang werken"
+            ]
+          },
+          "syncVisibilityWith": "photo-before-w"
+        },
+        {
+          "type": "group",
+          "dataContext": "oldMeter",
+          "controls": [
+            {
+              "type": "read-only",
+              "name": "meter-number",
+              "label": "Meternummer",
+              "dataMember": "number",
+              "syncVisibilityWith": "current-meter"
+            },
+            {
+              "type": "group",
+              "dataContext": "registers",
+              "controls": [
+                {
+                  "type": "read-only",
+                  "name": "previous-reading-estimated",
+                  "label": "Vorige stand",
+                  "labelFormat": "Vorige stand, geschat op {1}",
+                  "dataMember": [
+                    "previousReading",
+                    "previousReadingDate:date:dd-MM-yyyy"
+                  ],
+                  "visibilityConditions": [
+                    {
+                      "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)]",
+                      "dataMember": "readingEstimated",
+                      "value": "True",
+                      "result": true
+                    },
+                    {
+                      "result": false
+                    }
+                  ]
+                },
+                {
+                  "type": "read-only",
+                  "name": "previous-reading-read",
+                  "label": "Vorige stand",
+                  "labelFormat": "Vorige stand, opgenomen op {1}",
+                  "dataMember": [
+                    "previousReading",
+                    "previousReadingDate:date:dd-MM-yyyy"
+                  ],
+                  "visibilityConditions": [
+                    {
+                      "control": "task-executable",
+                      "value": true,
+                      "result": true
+                    },
+                    {
+                      "result": false
+                    },
+                    {
+                      "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)]",
+                      "dataMember": "readingEstimated",
+                      "value": "True",
+                      "result": false
+                    },
+                    {
+                      "result": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "radio",
+          "name": "serial-number-correct",
+          "label": "Komen de laatste vier cijfers van het meternummer overeen?",
+          "dataMember": "serialNumberCorrect",
+          "dataContext": "oldMeter",
+          "orientation": "horizontal",
+          "required": true,
+          "requiredMessage": "Geef aan of het serienummer correct is",
+          "syncVisibilityWith": "photo-before-w"
+        },
+        {
+          "type": "group",
+          "dataContext": "oldMeter",
+          "controls": [
+            {
+              "type": "group",
+              "dataContext": "registers",
+              "controls": [
+                {
+                  "type": "numeric",
+                  "name": "meter-reading",
+                  "label": "Index",
+                  "dataMember": "newReading",
+                  "maxLength": 10,
+                  "required": true,
+                  "requiredMessage": "Vul de stand van de oude meter in",
+                  "minValueDataMember": "previousReading",
+                  "treatRangeErrorsAsWarnings": true,
+                  "invalidRangeMessage": [
+                    {
+                      "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)]",
+                      "dataMember": "readingEstimated",
+                      "value": "True",
+                      "result": "Opgelet, de historische meterindex was geschat, gelieve de ingegeven meterindex te controleren."
+                    },
+                    {
+                      "result": "Opgelet, de historische meterindex was niet geschat, gelieve de ingegeven meterindex te controleren."
+                    }
+                  ],
+                  "visibilityConditions": [
+                    {
+                      "control": "task-executable",
+                      "function": "!equals",
+                      "value": true,
+                      "result": false
+                    },
+                    {
+                      "control": "is-task-executable",
+                      "function": "!equals",
+                      "value": true,
+                      "result": false
+                    },
+                    {
+                      "control": "serial-number-correct",
+                      "function": "!equals",
+                      "value": true,
+                      "result": false
+                    },
+                    {
+                      "result": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "water-meter-location",
+              "label": "Locatie watermeter",
+              "dataMember": "waterMeterLocation",
+              "defaultValueDataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)]",
+              "defaultValueDataMember": "waterMeterLocation",
+              "required": true,
+              "requiredMessage": "Locatie is verplicht",
+              "syncVisibilityWith": "meter-reading",
+              "maxLength": 40
+            },
+            {
+              "type": "radio",
+              "name": "water-meter-check-valve",
+              "label": "Keerklep aanwezig?",
+              "dataMember": "waterMeterCheckValve",
+              "orientation": "horizontal",
+              "required": true,
+              "requiredMessage": "Selecteer een waarde",
+              "syncVisibilityWith": "photo-before-w"
+            },
+            {
+              "type": "text",
+              "name": "main-meter-location",
+              "label": "Locatie E-meter",
+              "dataMember": "mainMeterLocation",
+              "required": true,
+              "requiredMessage": "Locatie E-meter is verplicht",
+              "syncVisibilityWith": "meter-reading",
+              "maxLength": 40
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "remark",
+          "label": "Opmerking",
+          "multiline": true,
+          "dataMember": "userRemark",
+          "requiredMessage": "Vul een opmerking in",
+          "syncVisibilityWith": "meter-reading"
+        },
+        {
+          "type": "text",
+          "name": "trigger-meter-number",
+          "visibilityConditions": [
+            {
+              "control": "task-executable",
+              "value": true,
+              "result": true
+            },
+            {
+              "result": false
+            },
+            {
+              "result": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "meter-problem",
+      "type": "select",
+      "label": "Selecteer reden",
+      "listDataSource": "masterData.meterProblems",
+      "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)]",
+      "dataMember": "meterProblem",
+      "visibilityConditions": [
+        {
+          "control": "task-executable",
+          "value": false,
+          "result": true
+        },
+        {
+          "result": false
+        }
+      ],
+      "required": true
+    },
+    {
+      "type": "button",
+      "name": "submit",
+      "text": "Verder",
+      "validate": true,
+      "action": {
+        "type": "conditional",
+        "conditions": [
+          {
+            "control": "task-executable",
+            "value": false,
+            "result": {
+              "type": "complete-task"
+            }
+          },
+          {
+            "dataMember": "serialNumberCorrect",
+            "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)].oldMeter",
+            "value": false,
+            "result": {
+              "type": "multiple",
+              "actions": [
+                {
+                  "type": "set-value",
+                  "dataMember": "meterProblem",
+                  "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)]",
+                  "value": 24,
+                  "comment": "Meternummer matcht niet"
+                },
+                {
+                  "type": "complete-task",
+                  "target": "summary"
+                }
+              ]
+            }
+          },
+          {
+            "dataMember": "isTaskExecutable",
+            "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)].oldMeter",
+            "value": false,
+            "result": {
+              "type": "complete-task",
+              "target": "summary"
+            }
+          },
+          {
+            "result": {
+              "type": "navigate",
+              "target": "new-meter-water-deepomatic"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "source": "meter-problem-0",
+      "value": 31,
+      "action": {
+        "type": "set-value",
+        "control": "remark-0",
+        "value": "\"aarding\""
+      }
+    },
+    {
+      "source": "trigger-meter-number-0",
+      "state": "not-empty",
+      "action": {
+        "type": "conditional",
+        "conditions": [
+          {
+            "control": "trigger-meter-number-0",
+            "function": "equals",
+            "value": {
+              "dataContext": "tasks[?(@.taskId==@CURRENT_TASK_ID)].oldMeter",
+              "dataMember": "number"
+            },
+            "result": {
+              "type": "set-value",
+              "control": "serial-number-correct-0",
+              "value": true
+            }
+          },
+          {
+            "result": {
+              "type": "set-value",
+              "control": "serial-number-correct-0",
+              "value": false
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

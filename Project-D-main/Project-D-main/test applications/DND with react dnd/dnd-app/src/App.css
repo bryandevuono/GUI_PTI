@@ -1,0 +1,27 @@
+.App {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100vh;
+}
+
+.container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+}
+
+.draggable-item {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  margin: 5px;
+  cursor: move;
+}
+
+.dragging {
+  opacity: 0.5;
+  /* Example: reduce opacity while dragging */
+  border: 2px dashed #3498db;
+  /* Example: change border style while dragging */
+}

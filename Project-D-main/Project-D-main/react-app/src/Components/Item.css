@@ -1,0 +1,225 @@
+.div {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 170px;
+    height: 75px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    user-select: none;
+    /* background-color: #41163E; */
+    color: rgb(255, 255, 255);
+    /* border: 1; */
+    background-color: white;
+    /* background-image: linear-gradient(90 deg, gray, #41163E 50%, #8d1f7b 100%); */
+    /* background-image: linear-gradient(#8d1f7b 50%, #41163E 100%); */
+}
+
+.item {
+    padding: 0px 10px;
+    height: 120px;
+    background-color: #8C2378;
+    border: 0.5px solid #ffffff44;
+    color: white;
+}
+
+.DeleteButton {
+    border-radius: 30%;
+    padding: 0px 4px;
+    height: 15px;
+    background-color: #e72f2f;
+    border: 0.5px solid #06060644;
+    color: white;
+}
+
+.DeleteButton:hover {
+    background-color: #120117;
+    cursor: pointer;
+}
+
+.EditButton {
+    border-radius: 10%;
+    padding: 0px 4px;
+    height: 15px;
+    background-color: #8C2378;
+    border: 0.5px solid #06060644;
+    color: white;
+}
+
+.EditButton:hover {
+    background-color: #120117;
+    cursor: pointer;
+}
+
+.popupMenuButton {
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    background-color: #8C2378;
+    border: 0.5px solid #06060644;
+    color: white;
+    display: block;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 5px #00000044;
+}
+
+.popupMenuButton:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.popupMenuButton:active {
+    color: #ccc;
+    box-shadow: 2px 2px 5px #00000011;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 999;
+}
+
+.popupMenuText {
+    text-align: center;
+    height: 60px;
+    border: 1px solid #ffffff44;
+    border-radius: 10px 10px 0px 0px;
+    color: #8C2378;
+    background-color: #eeddec;
+    cursor: pointer;
+    margin-bottom: 20px;
+    line-height: 0px;
+}
+
+.popupMenuText p {
+    font-size: 12px;
+}
+
+.popup {
+    background-color: #eeddec44;
+    border: 1px solid #ffffff44;
+    backdrop-filter: blur(10px);
+    width: 350px;
+    border-radius: 10px;
+    animation: dropTop 0.2s linear;
+}
+
+.popupimport{
+    background-color: #eeddec44;
+    border: 1px solid #ffffff44;
+    backdrop-filter: blur(10px);
+    width: 600px;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.editContainer {
+    background-color: #8C237888;
+    margin-bottom: 3px;
+    padding-left: 20px;
+    padding-bottom: 2px;
+    border-radius: 0px 0px 10px 10px;
+
+}
+
+.newlabel {
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: 300px; 
+    height: 20px;
+}
+.submitbutton {
+    margin: 0 auto;
+    padding: 15px 10px;
+    width: 50%;
+    max-width: 250px;
+    height: 45px;
+    background-color: #8C2378;
+    border: 0.5px solid #06060644;
+    color: white;
+    display: block;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    box-shadow: 2px 2px 5px #00000044;
+}
+.submitbutton:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+.importjson{
+    margin: 0 auto;
+    padding: 15px 10px;
+    width: 100%;
+    max-width: 550px;
+    height: 375px;
+    background-color: #8C2378;
+    border: 0.5px solid #06060644;
+    color: white;
+    display: block;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    box-shadow: 2px 2px 5px #00000044;
+}
+.submitbuttonimport {
+    margin: 0 auto;
+    padding: 15px 10px;
+    width: 50%;
+    max-width: 250px;
+    height: 45px;
+    background-color: #8C2378;
+    border: 0.5px solid #06060644;
+    color: white;
+    display: block;
+    font-size: 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    box-shadow: 2px 2px 5px #00000044;
+}
+.submitbuttonimport:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+@keyframes dropTop {
+    0% {
+        transform: translateY(-100%) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0%) scale(1);
+        opacity: 1;
+    }
+}
+.optionlist{
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    background-color: #8C2378;
+    border: 0.5px solid #06060644;
+    color: white;
+    display: block;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 5px #00000044;
+}
